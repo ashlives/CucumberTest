@@ -7,15 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
-import java.util.concurrent.TimeUnit;
-
-/**
- * Created by Lenovo G50-70 on 24-07-2017.
- */
 public class Test_Steps {
     public static WebDriver driver;
     @Given("^User is on Home Page$")
-    public void user_is_on_Home_Page() throws Throwable {
+    public void user_is_on_Home_Page(){
         // Write code here that turns the phrase above into concrete actions
         System.setProperty("webdriver.chrome.driver","D:\\Selenium Webdriver/chromedriver.exe");
         driver = new ChromeDriver();
@@ -29,17 +24,18 @@ public class Test_Steps {
     }
 
     @When("^User enters Password$")
-    public void user_enters_Password() throws Throwable {
+    public void user_enters_Password() {
         // Write code here that turns the phrase above into concrete actions
         driver.findElement(By.id("login-password")).sendKeys("password");
         driver.findElement(By.id("login-submit")).click();
     }
 
     @Then("^User is logged in successfully$")
-    public void user_is_logged_in_successfully() throws Throwable {
+    public void user_is_logged_in_successfully() {
         // Write code here that turns the phrase above into concrete actions
         String username = driver.findElement(By.xpath(".//*[@id='voyager-feed']/div[2]/aside[1]/div/div/div/div[1]/a[2]")).getText();
 
         Assert.assertEquals(username, "Ashish Deshmukh");
+        driver.quit();
     }
 }
